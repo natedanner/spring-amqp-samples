@@ -21,7 +21,7 @@ class SpringRabbitStreamsApplicationTests {
 	@Test
 	void verifyAllStreamListenerReceivesAllData(CapturedOutput output) {
 		IntStream.range(0, 10)
-				.forEach((index) ->
+				.forEach(index ->
 						await().untilAsserted(() ->
 								assertThat(output.getOut())
 										.contains("SampleRabbitStreamListener#" + index + " received: Value #99")));

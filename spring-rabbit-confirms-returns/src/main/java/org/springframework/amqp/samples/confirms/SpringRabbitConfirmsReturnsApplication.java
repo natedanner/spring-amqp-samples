@@ -86,11 +86,10 @@ public class SpringRabbitConfirmsReturnsApplication {
 				System.out.println("Received " + (ack ? " ack " : " nack ") + "for correlation: " + correlation);
 			}
 		});
-		this.rabbitTemplate.setReturnsCallback(returned -> {
+		this.rabbitTemplate.setReturnsCallback(returned ->
 			System.out.println("Returned: " + returned.getMessage() + "\nreplyCode: " + returned.getReplyCode()
 					+ "\nreplyText: " + returned.getReplyText() + "\nexchange/rk: "
-					+ returned.getExchange() + "/" + returned.getRoutingKey());
-		});
+					+ returned.getExchange() + "/" + returned.getRoutingKey()));
 	}
 
 

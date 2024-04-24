@@ -54,7 +54,7 @@ public class SpringRabbitStreamsApplication implements BeanFactoryAware {
 			CompletableFuture<?>[] sendResults =
 					IntStream.range(0, 100)
 							.boxed()
-							.map((value) -> "Value #" + value)
+							.map(value -> "Value #" + value)
 							.map(rabbitStreamOperations::convertAndSend)
 							.toArray(CompletableFuture<?>[]::new);
 
@@ -70,7 +70,7 @@ public class SpringRabbitStreamsApplication implements BeanFactoryAware {
 
 	@Bean
 	ContainerCustomizer<StreamListenerContainer> streamListenerContainerContainerCustomizer() {
-		return (container) ->
+		return container ->
 				container.setConsumerCustomizer((listenerId, consumerBuilder) ->
 						consumerBuilder.offset(OffsetSpecification.last()));
 	}
